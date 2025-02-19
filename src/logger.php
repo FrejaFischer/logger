@@ -12,9 +12,11 @@ define('LOG_FILE_NAME', 'log/log_' . date("Ymd") . '.htm'); // defining file nam
 function logText(...$content): void
 {
 
-    // check if directory exist, and create it if not
-    if(!is_dir(LOG_DIRECTORY)){
-        mkdir(LOG_DIRECTORY);
+    // If the logging directory does not exist, it is created
+    if (!is_dir(LOG_DIRECTORY)) {
+        if (!mkdir(LOG_DIRECTORY)) {
+            return;
+        }
     }
 
     $output = '';
